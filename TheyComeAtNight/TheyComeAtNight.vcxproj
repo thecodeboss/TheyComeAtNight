@@ -68,8 +68,10 @@
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\Window\Window.cpp" />
     <ClCompile Include="Game\Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="Engine\Menus\Menu.h" />
+    <ClInclude Include="Game\Object.h" />
+    <ClInclude Include="Math\Matrix.h" />
+    <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Engine\Audio\AudioManager.h" />
     <ClInclude Include="Engine\Debug\Macros.h" />
     <ClInclude Include="Engine\Engine.h" />

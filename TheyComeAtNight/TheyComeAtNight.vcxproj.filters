@@ -13,6 +13,12 @@
     <Filter Include="Engine\Audio">
       <UniqueIdentifier>{8fb6bbf2-506a-45eb-8231-5d65e7800352}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Menus">
+      <UniqueIdentifier>{7d8d0979-1152-460b-bb46-03b8c6bb6f50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Math">
+      <UniqueIdentifier>{bebff35e-45c8-44dc-8d8d-e99b9e84068a}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Engine\Window">
       <UniqueIdentifier>{d324f177-32a4-41c2-9ec9-4f0d236abd34}</UniqueIdentifier>
     </Filter>
@@ -43,6 +49,20 @@
     </ClInclude>
     <ClInclude Include="Engine\Audio\AudioManager.h">
       <Filter>Engine\Audio</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Menus\Menu.h">
+      <Filter>Engine\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix.h">
+      <Filter>Engine\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
