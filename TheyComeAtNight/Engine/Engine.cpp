@@ -59,8 +59,49 @@ bool Engine::Shutdown()
 	return result;
 }
 
+//void UpdateCamera() 
+//{
+//	throw std::exception("The method or operation is not implemented.");
+//}
+//
+//void UpdateSceneElements() 
+//{
+//	throw std::exception("The method or operation is not implemented.");
+//}
+//
+//void RenderScene() 
+//{
+//	throw std::exception("The method or operation is not implemented.");
+//}
+//
+//void StartMenu()
+//{
+//	throw std::exception("The method or operation is not implemented.");
+//}
+//
+//bool bIsGameRunning()
+//{
+//	throw std::exception("The method or operation is not implemented.");
+//}
+
 bool Engine::MainEngineLoop()
 {
+	//Menu();
+
+	//if (! bIsGameRunning())
+	//{
+	//	continue;
+	//}
+
+	//UpdateCamera();
+
+	//UpdateSceneElements();
+
+	//RenderScene();
+
+	//SwapBuffers();
+
+
 	// This should return true when user quits.
 	// Returns false for now so the window won't close right away.
 	return false;
