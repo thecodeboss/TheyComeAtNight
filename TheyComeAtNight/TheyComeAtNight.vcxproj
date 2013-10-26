@@ -66,6 +66,12 @@
   <ItemGroup>
     <ClCompile Include="Game\Main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Menus\Menu.h" />
+    <ClInclude Include="Game\Object.h" />
+    <ClInclude Include="Math\Matrix.h" />
+    <ClInclude Include="Math\Vector.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
