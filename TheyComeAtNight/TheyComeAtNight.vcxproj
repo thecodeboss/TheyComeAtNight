@@ -47,6 +47,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -64,7 +65,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\Window\Window.cpp" />
     <ClCompile Include="Game\Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Audio\AudioManager.h" />
+    <ClInclude Include="Engine\Debug\Macros.h" />
+    <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\Window\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

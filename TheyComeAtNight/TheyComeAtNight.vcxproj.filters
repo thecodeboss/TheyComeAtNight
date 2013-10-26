@@ -13,10 +13,36 @@
     <Filter Include="Engine\Audio">
       <UniqueIdentifier>{8fb6bbf2-506a-45eb-8231-5d65e7800352}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Window">
+      <UniqueIdentifier>{d324f177-32a4-41c2-9ec9-4f0d236abd34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug">
+      <UniqueIdentifier>{7b8d04c9-bdc6-49f8-9716-4d21ccef0f53}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Main.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Window\Window.cpp">
+      <Filter>Engine\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Debug\Macros.h">
+      <Filter>Engine\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Window\Window.h">
+      <Filter>Engine\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Audio\AudioManager.h">
+      <Filter>Engine\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
