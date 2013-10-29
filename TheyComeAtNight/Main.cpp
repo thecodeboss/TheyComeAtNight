@@ -1,4 +1,4 @@
-#include "../Engine/Engine.h"
+#include "Engine.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow)
 {

@@ -1,68 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{6faba44c-e46f-49e5-83f8-6ff56309fcbc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{a2389936-b500-4413-998a-84657bf92bd9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Rendering">
-      <UniqueIdentifier>{8f2c72d3-45a8-4afc-9260-ad513ba18b36}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Audio">
-      <UniqueIdentifier>{8fb6bbf2-506a-45eb-8231-5d65e7800352}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Menus">
-      <UniqueIdentifier>{7d8d0979-1152-460b-bb46-03b8c6bb6f50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Math">
-      <UniqueIdentifier>{bebff35e-45c8-44dc-8d8d-e99b9e84068a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Window">
-      <UniqueIdentifier>{d324f177-32a4-41c2-9ec9-4f0d236abd34}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Debug">
-      <UniqueIdentifier>{7b8d04c9-bdc6-49f8-9716-4d21ccef0f53}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Game\Main.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Window\Window.cpp">
-      <Filter>Engine\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Engine.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Engine\Debug\Macros.h">
-      <Filter>Engine\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Window\Window.h">
-      <Filter>Engine\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Engine.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Audio\AudioManager.h">
-      <Filter>Engine\Audio</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Engine\Menus\Menu.h">
-      <Filter>Engine\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Object.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Vector.h">
-      <Filter>Engine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Matrix.h">
-      <Filter>Engine\Math</Filter>
-    </ClInclude>
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
 </Project>
