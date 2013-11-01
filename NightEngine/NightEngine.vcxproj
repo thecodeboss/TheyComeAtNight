@@ -25,10 +25,12 @@
     <ClInclude Include="Math\Matrix.h" />
     <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Settings\Settings.h" />
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Settings\Settings.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

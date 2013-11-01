@@ -53,8 +53,11 @@ LRESULT CALLBACK Window::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPA
 	}
 }
 
-bool Window::Initialize()
+bool Window::Initialize( GameSettings* gameSettings )
 {
+	// Initialize the message structure.
+	ZeroMemory(&m_msg, sizeof(MSG));
+
 	// Set an external pointer to this object.
 	// This will become useful for callbacks.
 	g_MainWindow = this;
@@ -62,7 +65,8 @@ bool Window::Initialize()
 	// Get the instance of this window.
 	m_hinstance = GetModuleHandle(NULL);
 
-	m_WindowTitle = "Game Engine (Change This)";
+	// Handle the settings for the game
+	m_GameSettings = gameSettings;
 
 	// Setup the window with default settings for now.
 	WNDCLASSEX wc;
@@ -76,27 +80,27 @@ bool Window::Initialize()
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	wc.lpszMenuName = NULL;
-	wc.lpszClassName = m_WindowTitle;
+	wc.lpszClassName = m_GameSettings->m_GameTitle;
 	wc.cbSize = sizeof(WNDCLASSEX);
 
 	// Register the window
 	RegisterClassEx(&wc);
 
-	// Determine the resolution of the user's screen.
-	m_ScreenWidth  = GetSystemMetrics(SM_CXSCREEN);
-	m_ScreenHeight = GetSystemMetrics(SM_CYSCREEN);
-
 	int posX, posY;
 
 	// Setup the screen settings depending on whether it is running in full screen or in windowed mode.
-	if(m_FullScreen)
+	if(gameSettings->m_bFullScreen)
 	{
+		// Determine the resolution of the user's screen.
+		gameSettings->m_ScreenX  = GetSystemMetrics(SM_CXSCREEN);
+		gameSettings->m_ScreenY = GetSystemMetrics(SM_CYSCREEN);
+
 		// If full screen set the screen to maximum size of the users desktop and 32bit.
 		DEVMODE dmScreenSettings;
 		memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
 		dmScreenSettings.dmSize       = sizeof(dmScreenSettings);
-		dmScreenSettings.dmPelsWidth  = (unsigned long)m_ScreenWidth;
-		dmScreenSettings.dmPelsHeight = (unsigned long)m_ScreenHeight;
+		dmScreenSettings.dmPelsWidth  = (unsigned long)gameSettings->m_ScreenX;
+		dmScreenSettings.dmPelsHeight = (unsigned long)gameSettings->m_ScreenY;
 		dmScreenSettings.dmBitsPerPel = 32;			
 		dmScreenSettings.dmFields     = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 
@@ -108,17 +112,14 @@ bool Window::Initialize()
 	}
 	else
 	{
-		// If windowed then set it to 800x600 resolution.
-		m_ScreenWidth  = 800;
-		m_ScreenHeight = 600;
-
 		// Place the window in the middle of the screen.
-		posX = (GetSystemMetrics(SM_CXSCREEN) - m_ScreenWidth)  / 2;
-		posY = (GetSystemMetrics(SM_CYSCREEN) - m_ScreenHeight) / 2;
+		posX = (GetSystemMetrics(SM_CXSCREEN) - gameSettings->m_ScreenX)  / 2;
+		posY = (GetSystemMetrics(SM_CYSCREEN) - gameSettings->m_ScreenY) / 2;
 	}
 
 	// Create the window with the screen settings and get the handle to it.
-	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_WindowTitle, m_WindowTitle, WS_OVERLAPPEDWINDOW, posX, posY, m_ScreenWidth, m_ScreenHeight, NULL, NULL, m_hinstance, NULL);
+	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_GameSettings->m_GameTitle, m_GameSettings->m_GameTitle, WS_OVERLAPPEDWINDOW, 
+		posX, posY, gameSettings->m_ScreenX, gameSettings->m_ScreenY, NULL, NULL, m_hinstance, NULL);
 
 	// Bring the window up on the screen and set it as main focus.
 	ShowWindow(m_hwnd, SW_SHOW);
@@ -134,4 +135,16 @@ bool Window::Initialize()
 bool Window::Shutdown()
 {
 	return true;
+}
+
+unsigned Window::HandleMessages()
+{
+	// Handle the windows messages.
+	if(PeekMessage(&m_msg, NULL, 0, 0, PM_REMOVE))
+	{
+		TranslateMessage(&m_msg);
+		DispatchMessage(&m_msg);
+	}
+
+	return m_msg.message;
 }

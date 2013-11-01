@@ -19,6 +19,9 @@
     <Filter Include="Window">
       <UniqueIdentifier>{4ee6f46e-2580-4091-bce3-1c6cd5b37687}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Settings">
+      <UniqueIdentifier>{2112af5e-7c61-4e7b-898a-1c3bdd2407b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
@@ -38,11 +41,17 @@
     <ClInclude Include="Window\Window.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="Settings\Settings.h">
+      <Filter>Settings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Window\Window.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings\Settings.cpp">
+      <Filter>Settings</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
