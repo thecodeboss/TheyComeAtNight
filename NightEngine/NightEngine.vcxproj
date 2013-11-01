@@ -24,6 +24,8 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Math\Matrix.h" />
     <ClInclude Include="Math\Vector.h" />
+    <ClInclude Include="Memory\Pool.h" />
+    <ClInclude Include="Memory\Stack.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Rendering\OpenGL.h" />
     <ClInclude Include="Settings\Settings.h" />
@@ -31,6 +33,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Memory\Pool.cpp" />
+    <ClCompile Include="Memory\Stack.cpp" />
     <ClCompile Include="Settings\Settings.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>

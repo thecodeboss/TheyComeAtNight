@@ -63,7 +63,7 @@ bool Window::Initialize( GameSettings* gameSettings )
 	g_MainWindow = this;
 
 	// Get the instance of this window.
-	m_hinstance = GetModuleHandle(NULL);
+	m_hinstance = GetModuleHandle(nullptr);
 
 	// Handle the settings for the game
 	m_GameSettings = gameSettings;
@@ -75,11 +75,11 @@ bool Window::Initialize( GameSettings* gameSettings )
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
 	wc.hInstance = m_hinstance;
-	wc.hIcon = LoadIcon(NULL, IDI_WINLOGO);
+	wc.hIcon = LoadIcon(nullptr, IDI_WINLOGO);
 	wc.hIconSm = wc.hIcon;
-	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	wc.lpszMenuName = NULL;
+	wc.lpszMenuName = nullptr;
 	wc.lpszClassName = m_GameSettings->m_GameTitle;
 	wc.cbSize = sizeof(WNDCLASSEX);
 
@@ -119,7 +119,7 @@ bool Window::Initialize( GameSettings* gameSettings )
 
 	// Create the window with the screen settings and get the handle to it.
 	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_GameSettings->m_GameTitle, m_GameSettings->m_GameTitle, WS_OVERLAPPEDWINDOW, 
-		posX, posY, gameSettings->m_ScreenX, gameSettings->m_ScreenY, NULL, NULL, m_hinstance, NULL);
+		posX, posY, gameSettings->m_ScreenX, gameSettings->m_ScreenY, nullptr, nullptr, m_hinstance, nullptr);
 
 	// Bring the window up on the screen and set it as main focus.
 	ShowWindow(m_hwnd, SW_SHOW);
@@ -140,7 +140,7 @@ bool Window::Shutdown()
 unsigned Window::HandleMessages()
 {
 	// Handle the windows messages.
-	if(PeekMessage(&m_msg, NULL, 0, 0, PM_REMOVE))
+	if(PeekMessage(&m_msg, nullptr, 0, 0, PM_REMOVE))
 	{
 		TranslateMessage(&m_msg);
 		DispatchMessage(&m_msg);

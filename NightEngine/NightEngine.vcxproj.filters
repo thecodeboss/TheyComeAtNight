@@ -22,6 +22,9 @@
     <Filter Include="Debugging">
       <UniqueIdentifier>{ec6e5afa-6162-4724-80ba-a019edcde8ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{204f6083-212a-40fd-adf3-b8acc5386e36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
@@ -47,6 +50,12 @@
     <ClInclude Include="Rendering\OpenGL.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Memory\Pool.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\Stack.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -55,6 +64,12 @@
     </ClCompile>
     <ClCompile Include="Settings\Settings.cpp">
       <Filter>Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\Pool.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\Stack.cpp">
+      <Filter>Memory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
