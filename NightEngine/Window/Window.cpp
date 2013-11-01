@@ -1,9 +1,11 @@
 #include "Window.h"
+#include "../Rendering/OpenGL.h"
 
 // -------------------------------
 //        Global Variables
 // -------------------------------
 Window* g_MainWindow;
+OpenGLContext* g_OpenGLContext;
 
 // -------------------------------
 //        Global Functions
@@ -13,6 +15,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
 	switch(umessage)
 	{
+	case WM_SIZE:
+		{
+			g_OpenGLContext->ReshapeWindow(LOWORD(lparam), HIWORD(lparam));
+		}
 	case WM_DESTROY:
 		{
 			PostQuitMessage(0);
@@ -121,10 +127,14 @@ bool Window::Initialize( GameSettings* gameSettings )
 	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_GameSettings->m_GameTitle, m_GameSettings->m_GameTitle, WS_OVERLAPPEDWINDOW, 
 		posX, posY, gameSettings->m_ScreenX, gameSettings->m_ScreenY, NULL, NULL, m_hinstance, NULL);
 
+	g_OpenGLContext->CreateContext(m_hwnd, gameSettings); //Create our OpenGL context on the given window we just created
+
 	// Bring the window up on the screen and set it as main focus.
 	ShowWindow(m_hwnd, SW_SHOW);
 	SetForegroundWindow(m_hwnd);
 	SetFocus(m_hwnd);
+
+	g_OpenGLContext->SetupScene(); // Setup our OpenGL scene
 
 	// Hide the mouse cursor.
 	// ShowCursor(false);

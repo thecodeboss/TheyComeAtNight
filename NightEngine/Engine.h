@@ -4,6 +4,7 @@
 #include "Window/Window.h"
 #include "Debugging/Macros.h"
 #include "Settings/Settings.h"
+#include "Rendering/OpenGL.h"
 
 class Engine
 {
@@ -20,5 +21,6 @@ public:
 };
 
 extern Engine* g_Engine;
+extern OpenGLContext* g_OpenGLContext;
 
 #endif // Engine_h__
