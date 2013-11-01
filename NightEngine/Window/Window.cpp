@@ -129,6 +129,8 @@ bool Window::Initialize( GameSettings* gameSettings )
 
 	g_OpenGLContext->CreateContext(m_hwnd, gameSettings); //Create our OpenGL context on the given window we just created
 
+	g_OpenGLContext->CreateContext(m_hwnd, gameSettings); //Create our OpenGL context on the given window we just created
+
 	// Bring the window up on the screen and set it as main focus.
 	ShowWindow(m_hwnd, SW_SHOW);
 	SetForegroundWindow(m_hwnd);
