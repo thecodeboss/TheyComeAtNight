@@ -5,7 +5,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 {
 	// Initialize the game's settings
 	// In the future probably read this from a file
-	GameSettings * gameSettings = new GameSettings("They Come At Night", /* Full Screen = */ true);
+	GameSettings * gameSettings = new GameSettings("They Come At Night", /* Full Screen = */ false);
 
 	g_Engine = new Engine();
 	bool result = g_Engine->Init(gameSettings);
