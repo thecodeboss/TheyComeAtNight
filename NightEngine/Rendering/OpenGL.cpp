@@ -1,4 +1,5 @@
 #include "OpenGL.h"
+#include "../Debugging/Macros.h"
 
 OpenGLContext::OpenGLContext() {
 
@@ -64,13 +65,14 @@ bool OpenGLContext::CreateContext(HWND WindowIdentifier, GameSettings* gameSetti
 }
 
 void OpenGLContext::SetupScene() {
-	glClearColor(0.4f, 0.6f, 0.9f, 0.0f); // Set the clear color based on Microsofts CornflowerBlue (default in XNA)
+	glClearColor(0.4f, 0.6f, 0.9f, 0.0f); // Set the clear color based on Microsoft's CornflowerBlue (default in XNA)
 }
 
 void OpenGLContext::ReshapeWindow( unsigned x, unsigned y )
 {
 	m_GameSettings->m_ScreenX = x; // Set the window width
 	m_GameSettings->m_ScreenY = y; // Set the window height
+	RenderScene();
 }
 
 void OpenGLContext::RenderScene() {

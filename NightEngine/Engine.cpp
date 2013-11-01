@@ -13,6 +13,8 @@ bool Engine::Init( GameSettings *gameSettings )
 	bool result = m_MainWindow->Initialize(gameSettings);
 	CHECKFAIL(result, "Failed to initialize main Window")
 
+	g_OpenGLContext->SetupScene();
+
 	return result;
 }
 

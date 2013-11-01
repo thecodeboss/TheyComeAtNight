@@ -1,5 +1,6 @@
 #include "Window.h"
 #include "../Rendering/OpenGL.h"
+#include "../Debugging/Macros.h"
 
 // -------------------------------
 //        Global Variables
@@ -18,6 +19,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 	case WM_SIZE:
 		{
 			g_OpenGLContext->ReshapeWindow(LOWORD(lparam), HIWORD(lparam));
+			return 0;
 		}
 	case WM_DESTROY:
 		{
@@ -26,7 +28,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 		}
 	case WM_CLOSE:
 		{
-			PostQuitMessage(0);		
+			PostQuitMessage(0);
 			return 0;
 		}
 	default:
@@ -61,9 +63,6 @@ LRESULT CALLBACK Window::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPA
 
 bool Window::Initialize( GameSettings* gameSettings )
 {
-	// Initialize the message structure.
-	ZeroMemory(&m_msg, sizeof(MSG));
-
 	// Set an external pointer to this object.
 	// This will become useful for callbacks.
 	g_MainWindow = this;
@@ -84,7 +83,7 @@ bool Window::Initialize( GameSettings* gameSettings )
 	wc.hIcon = LoadIcon(nullptr, IDI_WINLOGO);
 	wc.hIconSm = wc.hIcon;
 	wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
-	wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	wc.hbrBackground = nullptr;
 	wc.lpszMenuName = nullptr;
 	wc.lpszClassName = m_GameSettings->m_GameTitle;
 	wc.cbSize = sizeof(WNDCLASSEX);
@@ -124,7 +123,7 @@ bool Window::Initialize( GameSettings* gameSettings )
 	}
 
 	// Create the window with the screen settings and get the handle to it.
-	m_hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, m_GameSettings->m_GameTitle, m_GameSettings->m_GameTitle, WS_OVERLAPPEDWINDOW, 
+	m_hwnd = CreateWindowEx(WS_EX_APPWINDOW | WS_EX_WINDOWEDGE, m_GameSettings->m_GameTitle, m_GameSettings->m_GameTitle, WS_OVERLAPPEDWINDOW, 
 		posX, posY, gameSettings->m_ScreenX, gameSettings->m_ScreenY, nullptr, nullptr, m_hinstance, nullptr);
 
 	g_OpenGLContext = new OpenGLContext();
@@ -134,8 +133,6 @@ bool Window::Initialize( GameSettings* gameSettings )
 	ShowWindow(m_hwnd, SW_SHOW);
 	SetForegroundWindow(m_hwnd);
 	SetFocus(m_hwnd);
-
-	g_OpenGLContext->SetupScene(); // Setup our OpenGL scene
 
 	// Hide the mouse cursor.
 	// ShowCursor(false);
