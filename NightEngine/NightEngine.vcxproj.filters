@@ -70,6 +70,8 @@
     </ClCompile>
     <ClCompile Include="Memory\Stack.cpp">
       <Filter>Memory</Filter>
+    <ClCompile Include="Rendering\OpenGL.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

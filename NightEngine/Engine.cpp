@@ -59,7 +59,7 @@ bool Engine::MainEngineLoop()
 
 	//UpdateSceneElements();
 
-	//RenderScene();
+	g_OpenGLContext->RenderScene(); 
 
 	//SwapBuffers();
 
