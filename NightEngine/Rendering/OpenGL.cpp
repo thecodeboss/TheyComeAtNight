@@ -16,7 +16,7 @@ OpenGLContext::~OpenGLContext() {
 }
 
 bool OpenGLContext::CreateContext(HWND WindowIdentifier, GameSettings* gameSettings) {
-	this->m_WindowIdentifier = WindowIdentifier; // Set the WindowsIdentifier for our window
+	m_WindowIdentifier = WindowIdentifier; // Set the WindowsIdentifier for our window
 	m_GameSettings = gameSettings;
 
 	m_DeviceContext = GetDC(WindowIdentifier); // Get the device context for our window

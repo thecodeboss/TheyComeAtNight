@@ -1,54 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Audio">
-      <UniqueIdentifier>{7f1217f3-076c-4148-bc3a-0f0484cd65c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{c7bdb845-685f-4f73-8005-079316880206}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Menus">
-      <UniqueIdentifier>{99f79008-8203-4693-a9f3-4018b04b19f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering">
-      <UniqueIdentifier>{07136aed-57cf-415c-ac0c-600f3563fd0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Window">
-      <UniqueIdentifier>{4ee6f46e-2580-4091-bce3-1c6cd5b37687}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Settings">
-      <UniqueIdentifier>{2112af5e-7c61-4e7b-898a-1c3bdd2407b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Debugging">
-      <UniqueIdentifier>{ec6e5afa-6162-4724-80ba-a019edcde8ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Memory">
-      <UniqueIdentifier>{204f6083-212a-40fd-adf3-b8acc5386e36}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Memory\Pool.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\Stack.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\OpenGL.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings\Settings.cpp">
+      <Filter>Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Window.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
-    <ClInclude Include="Object.h" />
     <ClInclude Include="Audio\AudioManager.h">
       <Filter>Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Matrix.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Vector.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Window\Window.h">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Settings\Settings.h">
-      <Filter>Settings</Filter>
     </ClInclude>
     <ClInclude Include="Debugging\Macros.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\OpenGL.h">
-      <Filter>Rendering</Filter>
+    <ClInclude Include="Math\Matrix.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Memory\Pool.h">
       <Filter>Memory</Filter>
@@ -56,22 +38,43 @@
     <ClInclude Include="Memory\Stack.h">
       <Filter>Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\OpenGL.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings\Settings.h">
+      <Filter>Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Window.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Window\Window.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Settings\Settings.cpp">
-      <Filter>Settings</Filter>
-    </ClCompile>
-    <ClCompile Include="Memory\Pool.cpp">
-      <Filter>Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="Memory\Stack.cpp">
-      <Filter>Memory</Filter>
-    <ClCompile Include="Rendering\OpenGL.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{16e372f4-efb3-45c9-a19c-738f38c88c2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debugging">
+      <UniqueIdentifier>{19d37234-af9a-4710-99dd-88cb757bc5f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{3ebb24a9-8e61-44a9-822b-40778056ff20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{9964eed3-106e-4448-b6df-29737f6c3d58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menus">
+      <UniqueIdentifier>{d7ca9b28-31ed-401c-98cc-85c68a16f3cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{f79beb05-cf55-4818-a8d8-5b4bcbff427e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Settings">
+      <UniqueIdentifier>{ac769fe6-12b1-43c7-bdd4-3a9c449e46b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{89f8bb06-94b1-4fa3-b147-f881b1297446}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
