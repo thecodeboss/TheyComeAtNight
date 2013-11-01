@@ -20,15 +20,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\AudioManager.h" />
-    <ClInclude Include="Debug\Macros.h" />
+    <ClInclude Include="Debugging\Macros.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Math\Matrix.h" />
     <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Settings\Settings.h" />
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Settings\Settings.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

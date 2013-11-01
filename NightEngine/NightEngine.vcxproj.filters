@@ -4,9 +4,6 @@
     <Filter Include="Audio">
       <UniqueIdentifier>{7f1217f3-076c-4148-bc3a-0f0484cd65c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Debug">
-      <UniqueIdentifier>{ec6e5afa-6162-4724-80ba-a019edcde8ae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Math">
       <UniqueIdentifier>{c7bdb845-685f-4f73-8005-079316880206}</UniqueIdentifier>
     </Filter>
@@ -19,15 +16,18 @@
     <Filter Include="Window">
       <UniqueIdentifier>{4ee6f46e-2580-4091-bce3-1c6cd5b37687}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Settings">
+      <UniqueIdentifier>{2112af5e-7c61-4e7b-898a-1c3bdd2407b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debugging">
+      <UniqueIdentifier>{ec6e5afa-6162-4724-80ba-a019edcde8ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Audio\AudioManager.h">
       <Filter>Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Debug\Macros.h">
-      <Filter>Debug</Filter>
     </ClInclude>
     <ClInclude Include="Math\Matrix.h">
       <Filter>Math</Filter>
@@ -38,11 +38,20 @@
     <ClInclude Include="Window\Window.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="Settings\Settings.h">
+      <Filter>Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\Macros.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Window\Window.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings\Settings.cpp">
+      <Filter>Settings</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
