@@ -31,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Rendering\OpenGL.cpp" />
     <ClCompile Include="Settings\Settings.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>

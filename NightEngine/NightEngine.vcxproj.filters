@@ -56,5 +56,8 @@
     <ClCompile Include="Settings\Settings.cpp">
       <Filter>Settings</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\OpenGL.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
