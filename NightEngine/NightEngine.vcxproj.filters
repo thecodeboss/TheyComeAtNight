@@ -29,9 +29,6 @@
     <ClInclude Include="Audio\AudioManager.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Debug\Macros.h">
-      <Filter>Debug</Filter>
-    </ClInclude>
     <ClInclude Include="Math\Matrix.h">
       <Filter>Math</Filter>
     </ClInclude>
@@ -46,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="Debugging\Macros.h">
       <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\OpenGL.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
