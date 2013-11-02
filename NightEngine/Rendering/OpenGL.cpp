@@ -69,7 +69,7 @@ void OpenGLContext::SetupScene()
 	glClearColor(0.4f, 0.6f, 0.9f, 0.0f); // Set the clear color based on Microsoft's CornflowerBlue (default in XNA)
 
 	m_Shader = new Shader();
-	m_Shader->Initialize("NightEngine/Rendering/Shaders/Shader.vert", "NightEngine/Rendering/Shaders/Shader.frag");
+	m_Shader->Initialize("NightEngine\\Rendering\\Shaders\\Shader.vert", "NightEngine\\Rendering\\Shaders\\Shader.frag");
 
 	bSceneReady = true;
 }

@@ -16,6 +16,7 @@ public:
 	void Bind();
 	void Unbind();
 	unsigned ID();
+	void PrintLog(GLuint obj);
 private:
 	unsigned ShaderID;
 	unsigned FragmentShader;
