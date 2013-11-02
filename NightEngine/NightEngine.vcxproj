@@ -43,6 +43,10 @@
     <ClCompile Include="Tests\Tests.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Rendering\Shaders\Shader.frag" />
+    <None Include="Rendering\Shaders\Shader.vert" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DA62E4B2-9DF6-4702-8E17-BB061711D775}</ProjectGuid>
     <RootNamespace>NightEngine</RootNamespace>

@@ -91,5 +91,16 @@
     <Filter Include="Tests">
       <UniqueIdentifier>{f9ef8bcd-e2f7-4465-9648-4c61f1442713}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Shaders">
+      <UniqueIdentifier>{6670ced0-d68d-49b4-86a9-00141d0829a1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Rendering\Shaders\Shader.vert">
+      <Filter>Rendering\Shaders</Filter>
+    </None>
+    <None Include="Rendering\Shaders\Shader.frag">
+      <Filter>Rendering\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

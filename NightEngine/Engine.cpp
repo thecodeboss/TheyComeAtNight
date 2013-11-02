@@ -17,7 +17,7 @@ bool Engine::Init( GameSettings *gameSettings )
 
 	Shader shader;
 	glewInit();
-	shader.Initialize("Shader.Vertex", "Shader.Fragment");
+	shader.Initialize("NightEngine/Rendering/Shaders/Shader.vert", "NightEngine/Rendering/Shaders/Shader.frag");
 
 	shader.Bind();
 	shader.Unbind();
