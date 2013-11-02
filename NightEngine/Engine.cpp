@@ -1,17 +1,11 @@
 #include "Debugging/Macros.h"
 #include "Engine.h"
-#include "Tests/Tests.h"
 
 Engine* g_Engine;
 
 bool Engine::Init( GameSettings *gameSettings )
 {
 	m_GameSettings = gameSettings;
-
-	if (m_GameSettings->m_TestMode == true)
-	{
-		bool result = SystemTests::RunAllTests();
-	}
 
 	m_MainWindow = new Window();
 	CHECKPOINTER(m_MainWindow, "Failed to create window.")
@@ -20,6 +14,13 @@ bool Engine::Init( GameSettings *gameSettings )
 	CHECKFAIL(result, "Failed to initialize main Window")
 
 	g_OpenGLContext->SetupScene();
+
+	Shader shader;
+	glewInit();
+	shader.Initialize("Shader.Vertex", "Shader.Fragment");
+
+	shader.Bind();
+	shader.Unbind();
 
 	return result;
 }
