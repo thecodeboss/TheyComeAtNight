@@ -90,7 +90,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\NightEngine;..\glew-1.10.0\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\NightEngine;..\glew-1.10.0\include;..\glm-0.9.4.6;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -103,7 +103,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\NightEngine;..\glew-1.10.0\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\NightEngine;..\glew-1.10.0\include;..\glm-0.9.4.6;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -118,7 +118,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\NightEngine;..\glew-1.10.0\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\NightEngine;..\glew-1.10.0\include;..\glm-0.9.4.6;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -134,7 +134,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\NightEngine;..\glew-1.10.0\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\NightEngine;..\glew-1.10.0\include;..\glm-0.9.4.6;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>

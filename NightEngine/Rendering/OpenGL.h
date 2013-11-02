@@ -2,10 +2,23 @@
 #define OpenGL_h__
 
 #include <Windows.h>
+
+// GLEW Libraries
 #include <GL/glew.h>
 #include <GL/wglew.h>
+
+// GLM Libraries
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 #include "../Settings/Settings.h"
 #include "Shader.h"
+
+// Typedefs
+typedef glm::vec3 vec3;
+typedef glm::vec4 vec4;
+typedef glm::mat3 mat3;
+typedef glm::mat4 mat4;
 
 class OpenGLContext
 {
