@@ -11,7 +11,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	gameSettings->m_TestMode = true;
 
 	g_Engine = new Engine();
-	bool result = g_Engine->Init(gameSettings);
+	bool result = g_Engine->Initialize(gameSettings);
 	CHECKFAIL(result, "Failed to initialize the game engine.\n")
 
 	result = g_Engine->Run();

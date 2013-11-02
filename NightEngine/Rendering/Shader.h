@@ -1,8 +1,9 @@
 #ifndef Shader_h__
 #define Shader_h__
 
-#include <stdlib.h>
-#include "OpenGL.h"
+#include <cstdlib>
+#include <GL/glew.h>
+#include <GL/wglew.h>
 
 //#include <string>
 

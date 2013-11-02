@@ -1,11 +1,11 @@
 #include "OpenGL.h"
 #include "../Debugging/Macros.h"
 
-OpenGLContext::OpenGLContext() {
-
+OpenGLContext::OpenGLContext() : bSceneReady(false) {
+	
 }
 
-OpenGLContext::OpenGLContext(HWND WindowIdentifier, GameSettings* gameSettings) {
+OpenGLContext::OpenGLContext(HWND WindowIdentifier, GameSettings* gameSettings) : bSceneReady(false) {
 	CreateContext(WindowIdentifier, gameSettings); // Create a context given a WindowsIdentifier
 }
 
@@ -64,19 +64,29 @@ bool OpenGLContext::CreateContext(HWND WindowIdentifier, GameSettings* gameSetti
 	return true; // We have successfully created a context, return true
 }
 
-void OpenGLContext::SetupScene() {
+void OpenGLContext::SetupScene()
+{
 	glClearColor(0.4f, 0.6f, 0.9f, 0.0f); // Set the clear color based on Microsoft's CornflowerBlue (default in XNA)
+
+	m_Shader = new Shader();
+	m_Shader->Initialize("NightEngine/Rendering/Shaders/Shader.vert", "NightEngine/Rendering/Shaders/Shader.frag");
+
+	bSceneReady = true;
 }
 
 void OpenGLContext::ReshapeWindow( unsigned x, unsigned y )
 {
 	m_GameSettings->m_ScreenX = x; // Set the window width
 	m_GameSettings->m_ScreenY = y; // Set the window height
-	RenderScene();
+	if (bSceneReady) RenderScene();
 }
 
 void OpenGLContext::RenderScene() {
 	glViewport(0, 0, m_GameSettings->m_ScreenX, m_GameSettings->m_ScreenY); // Set the viewport size to fill the window
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); // Clear required buffers
+
+	m_Shader->Bind();
+	m_Shader->Unbind();
+
 	SwapBuffers(m_DeviceContext); // Swap buffers so we can see our rendering
 }

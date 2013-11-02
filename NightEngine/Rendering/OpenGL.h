@@ -5,8 +5,9 @@
 #include <GL/glew.h>
 #include <GL/wglew.h>
 #include "../Settings/Settings.h"
+#include "Shader.h"
 
-class OpenGLContext 
+class OpenGLContext
 {
 public:
 	OpenGLContext();
@@ -16,12 +17,13 @@ public:
 	void SetupScene();
 	void ReshapeWindow(unsigned x, unsigned y);
 	void RenderScene();
-
 private:
 	HGLRC m_RenderingContext;
 	HDC m_DeviceContext;
 	HWND m_WindowIdentifier;
 	GameSettings* m_GameSettings;
+	Shader* m_Shader;
+	bool bSceneReady;
 };
 
 #endif // OpenGL_h__

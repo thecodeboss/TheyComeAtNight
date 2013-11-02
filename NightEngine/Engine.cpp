@@ -3,7 +3,7 @@
 
 Engine* g_Engine;
 
-bool Engine::Init( GameSettings *gameSettings )
+bool Engine::Initialize( GameSettings *gameSettings )
 {
 	m_GameSettings = gameSettings;
 
@@ -14,13 +14,6 @@ bool Engine::Init( GameSettings *gameSettings )
 	CHECKFAIL(result, "Failed to initialize main Window")
 
 	g_OpenGLContext->SetupScene();
-
-	Shader shader;
-	glewInit();
-	shader.Initialize("NightEngine/Rendering/Shaders/Shader.vert", "NightEngine/Rendering/Shaders/Shader.frag");
-
-	shader.Bind();
-	shader.Unbind();
 
 	return result;
 }

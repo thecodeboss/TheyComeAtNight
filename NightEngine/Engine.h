@@ -15,7 +15,7 @@ class Engine
 
 public:
 
-	bool Init(GameSettings *gameSettings);
+	bool Initialize(GameSettings *gameSettings);
 	bool Run();
 	bool Shutdown();
 	bool MainEngineLoop();

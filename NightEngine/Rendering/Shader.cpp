@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include "../Debugging/Macros.h"
 
 using namespace std;
 
@@ -47,10 +48,8 @@ bool Shader::Initialize(const char *VertexShaderFile, const char *FragmentShader
 
 	fclose(FilePointer);
 
-	if (VertexShaderText == nullptr || FragmentShaderText == nullptr) {
-		cerr << "Either vertex shader or fragment shader file not found." << endl;
-		return false;
-	}
+	CHECKPOINTER(VertexShaderText, "Vertex Shader file not found.\n")
+	CHECKPOINTER(FragmentShaderText, "Fragment Shader file not found.\n")
 
 	glShaderSource(VertexShader, 1, &VertexShaderText, 0);
 	glShaderSource(FragmentShader, 1, &FragmentShaderText, 0);
@@ -62,6 +61,9 @@ bool Shader::Initialize(const char *VertexShaderFile, const char *FragmentShader
 	glAttachShader(ShaderID, VertexShader);
 	glAttachShader(ShaderID, FragmentShader);
 	glLinkProgram(ShaderID);
+
+	glBindAttribLocation(ShaderID, 0, "in_Position"); // Bind a constant attribute location for positions of vertices
+	glBindAttribLocation(ShaderID, 1, "in_Color"); // Bind another constant attribute location, this time for color
 
 	return true; // ??
 }
