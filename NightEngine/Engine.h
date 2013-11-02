@@ -5,6 +5,7 @@
 #include "Debugging/Macros.h"
 #include "Settings/Settings.h"
 #include "Rendering/OpenGL.h"
+#include "Rendering/Shader.h"
 
 class Engine
 {
