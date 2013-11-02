@@ -52,8 +52,8 @@ bool OpenGLContext::CreateContext(HWND WindowIdentifier, GameSettings* gameSetti
 	};
 
 	if (wglewIsSupported("WGL_ARB_create_context") == 1) { // If the OpenGL 3.x context creation extension is available
-		m_RenderingContext = wglCreateContextAttribsARB(m_DeviceContext, NULL, attributes); // Create and OpenGL 3.x context based on the given attributes
-		wglMakeCurrent(NULL, NULL); // Remove the temporary context from being active
+		m_RenderingContext = wglCreateContextAttribsARB(m_DeviceContext, nullptr, attributes); // Create and OpenGL 3.x context based on the given attributes
+		wglMakeCurrent(nullptr, nullptr); // Remove the temporary context from being active
 		wglDeleteContext(TempOpenGLContext); // Delete the temporary OpenGL 2.1 context
 		wglMakeCurrent(m_DeviceContext, m_RenderingContext); // Make our OpenGL 3.0 context current
 	}

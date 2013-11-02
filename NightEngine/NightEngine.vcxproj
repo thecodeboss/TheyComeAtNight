@@ -30,6 +30,7 @@
     <ClInclude Include="Rendering\OpenGL.h" />
     <ClInclude Include="Rendering\Shader.h" />
     <ClInclude Include="Settings\Settings.h" />
+    <ClInclude Include="Tests\Tests.h" />
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +40,7 @@
     <ClCompile Include="Rendering\OpenGL.cpp" />
     <ClCompile Include="Rendering\Shader.cpp" />
     <ClCompile Include="Settings\Settings.cpp" />
+    <ClCompile Include="Tests\Tests.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

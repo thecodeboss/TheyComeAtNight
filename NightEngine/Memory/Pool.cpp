@@ -2,10 +2,14 @@
 #include "Pool.h"
 #include "../Debugging/Macros.h"
 
-MemoryPool::MemoryPool(size_t ElementSize, unsigned MaxNumElements) : m_ElementSize(ElementSize), m_MaxNumElements(MaxNumElements), m_NumElements(0)
+MemoryPool::MemoryPool(size_t ElementSize, unsigned MaxNumElements)
+	: m_ElementSize(ElementSize)
+	, m_MaxNumElements(MaxNumElements)
+	, m_NumElements(0)
+	, m_FreeList(nullptr)
 {
 	m_Pool = malloc(MaxNumElements*ElementSize);
-	m_FreeList = new FreeList();
+	m_PoolAllocator = m_Pool;
 }
 
 void * MemoryPool::Malloc(unsigned NumElements)
@@ -35,7 +39,7 @@ void MemoryPool::Free(void * Element)
 
 void * MemoryPool::New()
 {
-	if (m_FreeList != NULL)
+	if (m_FreeList != nullptr)
 	{
 		void * ret = m_FreeList;
 		m_FreeList = m_FreeList->m_Next;
@@ -44,3 +48,12 @@ void * MemoryPool::New()
 	else return Malloc(1);
 }
 
+void MemoryPool::Cleanup()
+{
+	free(m_Pool);
+	m_Pool = nullptr;
+	m_PoolAllocator = nullptr;
+	m_FreeList = nullptr;
+	m_NumElements = 0;
+	m_ElementSize = 0;
+}

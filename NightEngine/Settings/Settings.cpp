@@ -5,6 +5,7 @@ GameSettings::GameSettings( const char * GameTitle, bool bFullScreen /* = false*
 	, m_ScreenX(ScreenX)
 	, m_ScreenY(ScreenY)
 	, m_bFullScreen(bFullScreen)
+	, m_TestMode(false)
 {
 
 }

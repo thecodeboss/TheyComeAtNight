@@ -20,6 +20,9 @@
     <ClCompile Include="Rendering\Shader.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\Tests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
@@ -56,6 +59,9 @@
     <ClInclude Include="Rendering\Shader.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Tests\Tests.h">
+      <Filter>Tests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Audio">
@@ -81,6 +87,9 @@
     </Filter>
     <Filter Include="Window">
       <UniqueIdentifier>{89f8bb06-94b1-4fa3-b147-f881b1297446}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{f9ef8bcd-e2f7-4465-9648-4c61f1442713}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

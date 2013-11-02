@@ -24,6 +24,7 @@ public:
 	void * Malloc(unsigned NumElements);
 	void Free(void * Element);
 	void * New();
+	void Cleanup();
 };
 
 #endif // Pool_h__
