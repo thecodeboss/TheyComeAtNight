@@ -1,11 +1,18 @@
 #include "Debugging/Macros.h"
 #include "Engine.h"
+#include "Tests/Tests.h"
 
 Engine* g_Engine;
 
 bool Engine::Initialize( GameSettings *gameSettings )
 {
 	m_GameSettings = gameSettings;
+
+	if (m_GameSettings->m_TestMode == true)
+	{
+		bool result = SystemTests::RunAllTests();
+		if (!result) return false;
+	}
 
 	m_MainWindow = new Window();
 	CHECKPOINTER(m_MainWindow, "Failed to create window.")
