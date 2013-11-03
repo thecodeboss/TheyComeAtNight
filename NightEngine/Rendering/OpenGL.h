@@ -24,7 +24,7 @@ typedef glm::mat4 mat4;
 class OpenGLContext
 {
 public:
-	OpenGLContext();
+	OpenGLContext(GameSettings* gameSettings = nullptr);
 	OpenGLContext(HWND WindowIdentifier, GameSettings* gameSettings);
 	~OpenGLContext();
 	bool CreateContext(HWND WindowIdentifier, GameSettings* gameSettings);

@@ -1,8 +1,9 @@
 #include "OpenGL.h"
 #include "../Debugging/Macros.h"
 
-OpenGLContext::OpenGLContext() : bSceneReady(false) {
-	
+OpenGLContext::OpenGLContext(GameSettings* gameSettings /* = nullptr */) : bSceneReady(false)
+{
+	m_GameSettings = gameSettings;
 }
 
 OpenGLContext::OpenGLContext(HWND WindowIdentifier, GameSettings* gameSettings) : bSceneReady(false) {
