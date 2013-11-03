@@ -32,6 +32,7 @@ public:
 	void ReshapeWindow(unsigned x, unsigned y);
 	void RenderScene();
 	void PrintErrors();
+	void CreateSquare();
 private:
 	HGLRC m_RenderingContext;
 	HDC m_DeviceContext;
@@ -42,6 +43,8 @@ private:
 	mat4 ProjectionMatrix;
 	mat4 ViewMatrix;
 	mat4 ModelMatrix;
+	unsigned VertexArrayObject[1];
+	unsigned VertexBufferObject[1];
 };
 
 #endif // OpenGL_h__

@@ -77,6 +77,8 @@ void OpenGLContext::SetupScene()
 	bSceneReady = true;
 
 	ProjectionMatrix = glm::perspective(60.0f, (float)m_GameSettings->m_ScreenX / (float)m_GameSettings->m_ScreenY, 0.1f, 100.f);  // Create our perspective projection matrix
+
+	CreateSquare();
 }
 
 void OpenGLContext::ReshapeWindow( unsigned x, unsigned y )
@@ -107,11 +109,46 @@ void OpenGLContext::RenderScene() {
 	glUniformMatrix4fv(ViewMatrixLocation, 1, GL_FALSE, &ViewMatrix[0][0]); // Send our view matrix to the shader
 	glUniformMatrix4fv(ModelMatrixLocation, 1, GL_FALSE, &ModelMatrix[0][0]); // Send our model matrix to the shader
 
+	glBindVertexArray(VertexArrayObject[0]); // Bind our Vertex Array Object
+	glDrawArrays(GL_TRIANGLES, 0, 6); // Draw our square
+	glBindVertexArray(0); // Unbind our Vertex Array Object
+
 	m_Shader->Unbind();
 	PrintErrors();
 
 	SwapBuffers(m_DeviceContext); // Swap buffers so we can see our rendering
 	PrintErrors();
+}
+
+// @TODO: have CreateSquare take in a size parameter
+void OpenGLContext::CreateSquare() 
+{
+	// @TODO: change this new call
+	float* Vertices = new float[18];
+
+	Vertices[0] = -0.5; Vertices[1] = -0.5; Vertices[2] = 0.0; // Bottom left corner
+	Vertices[3] = -0.5; Vertices[4] = 0.5; Vertices[5] = 0.0; // Top left corner
+	Vertices[6] = 0.5; Vertices[7] = 0.5; Vertices[8] = 0.0; // Top Right corner
+
+	Vertices[9] = 0.5; Vertices[10] = -0.5; Vertices[11] = 0.0; // Bottom right corner
+	Vertices[12] = -0.5; Vertices[13] = -0.5; Vertices[14] = 0.0; // Bottom left corner
+	Vertices[15] = 0.5; Vertices[16] = 0.5; Vertices[17] = 0.0; // Top Right corner
+
+	glGenVertexArrays(1, &VertexArrayObject[0]); // Create our Vertex Array Object
+	glBindVertexArray(VertexArrayObject[0]); // Bind our Vertex Array Object so we can use it
+
+	glGenBuffers(1, VertexBufferObject); // Generate our Vertex Buffer Object
+	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[0]); // Bind our Vertex Buffer Object
+	glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(GLfloat), Vertices, GL_STATIC_DRAW); // Set the size and data of our VBO and set it to STATIC_DRAW
+
+	glVertexAttribPointer((GLuint)0, 3, GL_FLOAT, GL_FALSE, 0, 0); // Set up our vertex attributes pointer
+
+	glEnableVertexAttribArray(0); // Disable our Vertex Array Object
+	glBindVertexArray(0); // Disable our Vertex Buffer Object
+	PrintErrors();
+
+
+	delete [] Vertices;
 }
 
 void OpenGLContext::PrintErrors()
