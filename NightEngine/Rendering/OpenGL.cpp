@@ -74,6 +74,8 @@ void OpenGLContext::SetupScene()
 	PrintErrors();
 
 	bSceneReady = true;
+
+	ProjectionMatrix = glm::perspective(60.0f, (float)m_GameSettings->m_ScreenX / (float)m_GameSettings->m_ScreenY, 0.1f, 100.f);  // Create our perspective projection matrix
 }
 
 void OpenGLContext::ReshapeWindow( unsigned x, unsigned y )
@@ -90,8 +92,19 @@ void OpenGLContext::RenderScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); // Clear required buffers
 	PrintErrors();
 
+	ViewMatrix = glm::translate(mat4(1.0f), vec3(0.0f, 0.0f, -5.f)); // Create our view matrix which will translate us back 5 units
+	ModelMatrix = glm::scale(mat4(1.0f), vec3(0.5f));  // Create our model matrix which will halve the size of our model
+
 	m_Shader->Bind();
 	PrintErrors();
+
+	int ProjectionMatrixLocation = glGetUniformLocation(m_Shader->ID(), "ProjectionMatrix"); // Get the location of our projection matrix in the shader
+	int ViewMatrixLocation = glGetUniformLocation(m_Shader->ID(), "ViewMatrix"); // Get the location of our view matrix in the shader
+	int ModelMatrixLocation = glGetUniformLocation(m_Shader->ID(), "ModelMatrix"); // Get the location of our model matrix in the shader
+	
+	glUniformMatrix4fv(ProjectionMatrixLocation, 1, GL_FALSE, &ProjectionMatrix[0][0]); // Send our projection matrix to the shader
+	glUniformMatrix4fv(ViewMatrixLocation, 1, GL_FALSE, &ViewMatrix[0][0]); // Send our view matrix to the shader
+	glUniformMatrix4fv(ModelMatrixLocation, 1, GL_FALSE, &ModelMatrix[0][0]); // Send our model matrix to the shader
 
 	m_Shader->Unbind();
 	PrintErrors();

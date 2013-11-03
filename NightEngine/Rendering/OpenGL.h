@@ -39,6 +39,9 @@ private:
 	GameSettings* m_GameSettings;
 	Shader* m_Shader;
 	bool bSceneReady;
+	mat4 ProjectionMatrix;
+	mat4 ViewMatrix;
+	mat4 ModelMatrix;
 };
 
 #endif // OpenGL_h__
