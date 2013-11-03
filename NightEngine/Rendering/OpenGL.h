@@ -6,6 +6,7 @@
 // GLEW Libraries
 #include <GL/glew.h>
 #include <GL/wglew.h>
+#include <GL/GLU.h>
 
 // GLM Libraries
 #include <glm/glm.hpp>
@@ -30,6 +31,7 @@ public:
 	void SetupScene();
 	void ReshapeWindow(unsigned x, unsigned y);
 	void RenderScene();
+	void PrintErrors();
 private:
 	HGLRC m_RenderingContext;
 	HDC m_DeviceContext;

@@ -126,7 +126,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>OpenGL32.lib;glew32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;glew32.lib;glu32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\glew-1.10.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -142,7 +142,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>OpenGL32.lib;glew32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;glew32.lib;glu32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\glew-1.10.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -162,7 +162,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>OpenGL32.lib;glew32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;glew32.lib;glu32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\glew-1.10.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -182,7 +182,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>OpenGL32.lib;glew32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;glew32.lib;glu32.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\glew-1.10.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>

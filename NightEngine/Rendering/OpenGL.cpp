@@ -67,9 +67,11 @@ bool OpenGLContext::CreateContext(HWND WindowIdentifier, GameSettings* gameSetti
 void OpenGLContext::SetupScene()
 {
 	glClearColor(0.4f, 0.6f, 0.9f, 0.0f); // Set the clear color based on Microsoft's CornflowerBlue (default in XNA)
+	PrintErrors();
 
 	m_Shader = new Shader();
 	m_Shader->Initialize("NightEngine\\Rendering\\Shaders\\Shader.vert", "NightEngine\\Rendering\\Shaders\\Shader.frag");
+	PrintErrors();
 
 	bSceneReady = true;
 }
@@ -83,10 +85,26 @@ void OpenGLContext::ReshapeWindow( unsigned x, unsigned y )
 
 void OpenGLContext::RenderScene() {
 	glViewport(0, 0, m_GameSettings->m_ScreenX, m_GameSettings->m_ScreenY); // Set the viewport size to fill the window
+	PrintErrors();
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); // Clear required buffers
+	PrintErrors();
 
 	m_Shader->Bind();
+	PrintErrors();
+
 	m_Shader->Unbind();
+	PrintErrors();
 
 	SwapBuffers(m_DeviceContext); // Swap buffers so we can see our rendering
+	PrintErrors();
+}
+
+void OpenGLContext::PrintErrors()
+{
+	GLenum Error = glGetError();
+	if( Error != GL_NO_ERROR )
+	{
+		DEBUG_PRINT("OpenGL Error: " << gluErrorString(Error) << "\n")
+	}
 }
