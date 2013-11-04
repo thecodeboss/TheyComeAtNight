@@ -135,16 +135,16 @@ void OpenGLContext::CreateSquare()
 	float* Colors = new float[12];
 
 	Vertices[0] = -0.5; Vertices[1] = 0.5; Vertices[2] = 0.0; // Top left corner
-	Colors[0] = 1; Colors[1] = 1; Colors[2] = 1; 
+	Colors[0] = 1; Colors[1] = 0; Colors[2] = 0; 
 
 	Vertices[3] = -0.5; Vertices[4] = -0.5; Vertices[5] = 0.0; // Bottom left corner
 	Colors[3] = 1; Colors[4] = 1; Colors[5] = 1; 
 
 	Vertices[6] = 0.5; Vertices[7] = 0.5; Vertices[8] = 0.0; // Top Right corner
-	Colors[6] = 1; Colors[7] = 1; Colors[8] = 1; 
+	Colors[6] = 0; Colors[7] = 1; Colors[8] = 0; 
 
 	Vertices[9] = 0.5; Vertices[10] = -0.5; Vertices[11] = 0.0; // Bottom right corner
-	Colors[9] = 1; Colors[10] = 1; Colors[11] = 1; 
+	Colors[9] = 0; Colors[10] = 0; Colors[11] = 1; 
 
 
 	glGenVertexArrays(1, &VertexArrayObject[0]); // Create our Vertex Array Object
@@ -155,13 +155,15 @@ void OpenGLContext::CreateSquare()
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[0]); // Bind our Vertex Buffer Object
 	glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(GLfloat), Vertices, GL_STATIC_DRAW); // Set the size and data of our VBO and set it to STATIC_DRAW
 
-	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[0]); // Bind our second Vertex Buffer Object
-	glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(GLfloat), Vertices, GL_STATIC_DRAW); // Set the size and data of our VBO and set it to STATIC_DRAW
-
 	glVertexAttribPointer((GLuint)0, 3, GL_FLOAT, GL_FALSE, 0, 0); // Set up our vertex attributes pointer
+
+	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[1]); // Bind our second Vertex Buffer Object
+	glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(GLfloat), Colors, GL_STATIC_DRAW); // Set the size and data of our VBO and set it to STATIC_DRAW
+
 	glVertexAttribPointer((GLuint)1, 3, GL_FLOAT, GL_FALSE, 0, 0); // Set up our second vertex attributes pointer
 
-	glEnableVertexAttribArray(0); // Enable the first vertex attribute array
+
+
 	glEnableVertexAttribArray(1); // Enable the second vertex attribute array
 	glBindVertexArray(0); // 
 	PrintErrors();
@@ -173,7 +175,8 @@ void OpenGLContext::CreateSquare()
 void OpenGLContext::CreateSquare(float SideLength, float Position[3]) 
 {
 	// @TODO: change this new call
-	float* Vertices = new float[18];
+	float* Vertices = new float[12];
+	float* Colors = new float[12];
 
 	assert (SideLength > 0);
 	float HalfLength = SideLength/2;
@@ -198,6 +201,7 @@ void OpenGLContext::CreateSquare(float SideLength, float Position[3])
 
 
 	delete [] Vertices;
+	delete [] Colors;
 }
 
 void OpenGLContext::PrintErrors()
