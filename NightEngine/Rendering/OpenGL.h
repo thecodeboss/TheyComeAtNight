@@ -45,7 +45,7 @@ private:
 	mat4 ViewMatrix;
 	mat4 ModelMatrix;
 	unsigned VertexArrayObject[1];
-	unsigned VertexBufferObject[1];
+	unsigned VertexBufferObject[2]; //two buffers, one for vertices and one for color
 };
 
 #endif // OpenGL_h__
