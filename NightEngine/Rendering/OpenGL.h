@@ -33,6 +33,7 @@ public:
 	void RenderScene();
 	void PrintErrors();
 	void CreateSquare();
+	void CreateSquare(float SideLength, float Position[3]);
 private:
 	HGLRC m_RenderingContext;
 	HDC m_DeviceContext;

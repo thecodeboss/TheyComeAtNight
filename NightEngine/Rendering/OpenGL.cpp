@@ -1,5 +1,6 @@
 #include "OpenGL.h"
 #include "../Debugging/Macros.h"
+#include <math.h>
 
 OpenGLContext::OpenGLContext(GameSettings* gameSettings /* = nullptr */) : bSceneReady(false)
 {
@@ -78,13 +79,16 @@ void OpenGLContext::SetupScene()
 
 	ProjectionMatrix = glm::perspective(60.0f, (float)m_GameSettings->m_ScreenX / (float)m_GameSettings->m_ScreenY, 0.1f, 100.f);  // Create our perspective projection matrix
 
-	CreateSquare();
+	float Position[3] = {0, 0, 0};
+//	CreateSquare();
+	CreateSquare(2, Position);
 }
 
 void OpenGLContext::ReshapeWindow( unsigned x, unsigned y )
 {
 	m_GameSettings->m_ScreenX = x; // Set the window width
 	m_GameSettings->m_ScreenY = y; // Set the window height
+	ProjectionMatrix = glm::perspective(60.0f, (float)m_GameSettings->m_ScreenX / (float)m_GameSettings->m_ScreenY, 0.1f, 100.f);  // Create our perspective projection matrix
 	if (bSceneReady) RenderScene();
 }
 
@@ -133,6 +137,39 @@ void OpenGLContext::CreateSquare()
 	Vertices[9] = 0.5; Vertices[10] = -0.5; Vertices[11] = 0.0; // Bottom right corner
 	Vertices[12] = -0.5; Vertices[13] = -0.5; Vertices[14] = 0.0; // Bottom left corner
 	Vertices[15] = 0.5; Vertices[16] = 0.5; Vertices[17] = 0.0; // Top Right corner
+
+	glGenVertexArrays(1, &VertexArrayObject[0]); // Create our Vertex Array Object
+	glBindVertexArray(VertexArrayObject[0]); // Bind our Vertex Array Object so we can use it
+
+	glGenBuffers(1, VertexBufferObject); // Generate our Vertex Buffer Object
+	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[0]); // Bind our Vertex Buffer Object
+	glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(GLfloat), Vertices, GL_STATIC_DRAW); // Set the size and data of our VBO and set it to STATIC_DRAW
+
+	glVertexAttribPointer((GLuint)0, 3, GL_FLOAT, GL_FALSE, 0, 0); // Set up our vertex attributes pointer
+
+	glEnableVertexAttribArray(0); // Disable our Vertex Array Object
+	glBindVertexArray(0); // Disable our Vertex Buffer Object
+	PrintErrors();
+
+
+	delete [] Vertices;
+}
+
+void OpenGLContext::CreateSquare(float SideLength, float Position[3]) 
+{
+	// @TODO: change this new call
+	float* Vertices = new float[18];
+
+	assert (SideLength > 0);
+	float HalfLength = SideLength/2;
+
+	Vertices[0] = Position[0] - HalfLength; Vertices[1] = Position[1] - HalfLength; Vertices[2] = Position[2]; // Bottom left corner
+	Vertices[3] = Position[0] - HalfLength; Vertices[4] = Position[1] + HalfLength; Vertices[5] = Position[2]; // Top left corner
+	Vertices[6] = Position[0] + HalfLength; Vertices[7] = Position[1] + HalfLength; Vertices[8] = Position[2]; // Top Right corner
+
+	Vertices[9] = Position[0] + HalfLength; Vertices[10] = Position[1] - HalfLength; Vertices[11] = Position[2]; // Bottom right corner
+	Vertices[12] = Position[0] - HalfLength; Vertices[13] = Position[1] - HalfLength; Vertices[14] = Position[2]; // Bottom left corner
+	Vertices[15] = Position[0] + HalfLength; Vertices[16] = Position[1] + HalfLength; Vertices[17] = Position[2]; // Top Right corner
 
 	glGenVertexArrays(1, &VertexArrayObject[0]); // Create our Vertex Array Object
 	glBindVertexArray(VertexArrayObject[0]); // Bind our Vertex Array Object so we can use it
