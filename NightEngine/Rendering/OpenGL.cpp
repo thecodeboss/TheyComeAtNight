@@ -154,16 +154,14 @@ void OpenGLContext::CreateSquare()
 
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[0]); // Bind our Vertex Buffer Object
 	glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(GLfloat), Vertices, GL_STATIC_DRAW); // Set the size and data of our VBO and set it to STATIC_DRAW
-
+	
 	glVertexAttribPointer((GLuint)0, 3, GL_FLOAT, GL_FALSE, 0, 0); // Set up our vertex attributes pointer
-
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[1]); // Bind our second Vertex Buffer Object
 	glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(GLfloat), Colors, GL_STATIC_DRAW); // Set the size and data of our VBO and set it to STATIC_DRAW
 
 	glVertexAttribPointer((GLuint)1, 3, GL_FLOAT, GL_FALSE, 0, 0); // Set up our second vertex attributes pointer
 
-
-
+	glEnableVertexAttribArray(0); // Enable the first vertex attribute array
 	glEnableVertexAttribArray(1); // Enable the second vertex attribute array
 	glBindVertexArray(0); // 
 	PrintErrors();
