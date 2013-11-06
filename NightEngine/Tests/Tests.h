@@ -2,6 +2,8 @@
 #define Tests_h__
 
 #define POOLMEM_TEST_SIZE 2048
+#define STACKMEM_TEST_SIZE 2048
+#define STACKMEM_NUM_TRIALS 10
 
 class SystemTests {
 

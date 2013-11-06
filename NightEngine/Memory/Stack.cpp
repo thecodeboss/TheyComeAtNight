@@ -30,12 +30,24 @@ void * MemoryStack::Malloc( size_t Size )
 
 void MemoryStack::Rollback( void * Marker /*= nullptr*/ )
 {
-	if (Marker) m_Allocator = Marker;
-	else m_Allocator = m_Memory;
+	if (Marker)
+	{
+		size_t NumFreed = static_cast<char *>(m_Allocator) - Marker;
+		m_UsedSpace -= NumFreed;
+		m_Allocator = Marker;
+	}
+	else
+	{
+		m_Allocator = m_Memory;
+		m_UsedSpace = 0;
+	}
 }
 
 void MemoryStack::Cleanup()
 {
-
+	free(m_Memory);
+	m_Allocator = nullptr;
+	m_TotalSpace = 0;
+	m_UsedSpace = 0;
 }
 

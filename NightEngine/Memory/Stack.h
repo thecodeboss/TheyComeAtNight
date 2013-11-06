@@ -33,6 +33,7 @@ public:
 	 */
 	void Rollback(void * Marker = nullptr);
 
+	/* Cleans up the allocator */
 	void Cleanup();
 };
 
