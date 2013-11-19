@@ -63,6 +63,8 @@ bool OpenGLContext::CreateContext(HWND WindowIdentifier, GameSettings* gameSetti
 		m_RenderingContext = TempOpenGLContext; // If we didn't have support for OpenGL 3.x and up, use the OpenGL 2.1 context
 	}
 
+	glEnable(GL_CULL_FACE);
+
 	return true; // We have successfully created a context, return true
 }
 
@@ -80,8 +82,11 @@ void OpenGLContext::SetupScene()
 	ProjectionMatrix = glm::perspective(60.0f, (float)m_GameSettings->m_ScreenX / (float)m_GameSettings->m_ScreenY, 0.1f, 100.f);  // Create our perspective projection matrix
 
 	float Position[3] = {0, 0, 0};
-	CreateSquare();
-//	CreateSquare(2, Position);
+
+	m_Models = Model::CreateCube();
+	m_Models->InitializeBuffers();
+	m_Models->m_ModelMatrix = glm::scale(mat4(1.0f), vec3(0.5f));
+	PrintErrors();
 }
 
 void OpenGLContext::ReshapeWindow( unsigned x, unsigned y )
@@ -101,7 +106,8 @@ void OpenGLContext::RenderScene() {
 	PrintErrors();
 
 	ViewMatrix = glm::translate(mat4(1.0f), vec3(0.0f, 0.0f, -5.f)); // Create our view matrix which will translate us back 5 units
-	ModelMatrix = glm::scale(mat4(1.0f), vec3(0.5f));  // Create our model matrix which will halve the size of our model
+	m_Models->m_ModelMatrix = glm::rotate(m_Models->m_ModelMatrix, 1.0f, vec3(1.0f, 1.0f, 0.0f));
+	m_Models->m_ModelMatrix = glm::rotate(m_Models->m_ModelMatrix, 0.5f, vec3(0.0f, 1.0f, -1.0f));
 
 	m_Shader->Bind();
 	PrintErrors();
@@ -112,11 +118,12 @@ void OpenGLContext::RenderScene() {
 	
 	glUniformMatrix4fv(ProjectionMatrixLocation, 1, GL_FALSE, &ProjectionMatrix[0][0]); // Send our projection matrix to the shader
 	glUniformMatrix4fv(ViewMatrixLocation, 1, GL_FALSE, &ViewMatrix[0][0]); // Send our view matrix to the shader
-	glUniformMatrix4fv(ModelMatrixLocation, 1, GL_FALSE, &ModelMatrix[0][0]); // Send our model matrix to the shader
+	glUniformMatrix4fv(ModelMatrixLocation, 1, GL_FALSE, &m_Models->m_ModelMatrix[0][0]); // Send our model matrix to the shader
 
-	glBindVertexArray(VertexArrayObject[0]); // Bind our Vertex Array Object
+	glBindVertexArray(m_Models->VertexArrayObject[0]); // Bind our Vertex Array Object
+	PrintErrors();
 	
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4); // Draw our square
+	glDrawElements(GL_TRIANGLES, 3 * m_Models->m_Mesh->m_NumTriangles, GL_UNSIGNED_INT, nullptr);
 	glBindVertexArray(0); // Unbind our Vertex Array Object
 
 	m_Shader->Unbind();
@@ -124,82 +131,6 @@ void OpenGLContext::RenderScene() {
 
 	SwapBuffers(m_DeviceContext); // Swap buffers so we can see our rendering
 	PrintErrors();
-}
-
-// @TODO: have CreateSquare take in a size parameter
-void OpenGLContext::CreateSquare() 
-{
-	// @TODO: change these new calls
-	// @TODO: add a fourth variable per vertex so we can add the "see through" color option
-	float* Vertices = new float[12];
-	float* Colors = new float[12];
-
-	Vertices[0] = -0.5; Vertices[1] = 0.5; Vertices[2] = 0.0; // Top left corner
-	Colors[0] = 1; Colors[1] = 0; Colors[2] = 0; 
-
-	Vertices[3] = -0.5; Vertices[4] = -0.5; Vertices[5] = 0.0; // Bottom left corner
-	Colors[3] = 1; Colors[4] = 1; Colors[5] = 1; 
-
-	Vertices[6] = 0.5; Vertices[7] = 0.5; Vertices[8] = 0.0; // Top Right corner
-	Colors[6] = 0; Colors[7] = 1; Colors[8] = 0; 
-
-	Vertices[9] = 0.5; Vertices[10] = -0.5; Vertices[11] = 0.0; // Bottom right corner
-	Colors[9] = 0; Colors[10] = 0; Colors[11] = 1; 
-
-
-	glGenVertexArrays(1, &VertexArrayObject[0]); // Create our Vertex Array Object
-	glBindVertexArray(VertexArrayObject[0]); // Bind our Vertex Array Object so we can use it
-
-	glGenBuffers(2, VertexBufferObject); // Generate two Vertex Buffer Objects
-
-	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[0]); // Bind our Vertex Buffer Object
-	glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(GLfloat), Vertices, GL_STATIC_DRAW); // Set the size and data of our VBO and set it to STATIC_DRAW
-	
-	glVertexAttribPointer((GLuint)0, 3, GL_FLOAT, GL_FALSE, 0, 0); // Set up our vertex attributes pointer
-	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[1]); // Bind our second Vertex Buffer Object
-	glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(GLfloat), Colors, GL_STATIC_DRAW); // Set the size and data of our VBO and set it to STATIC_DRAW
-
-	glVertexAttribPointer((GLuint)1, 3, GL_FLOAT, GL_FALSE, 0, 0); // Set up our second vertex attributes pointer
-
-	glEnableVertexAttribArray(0); // Enable the first vertex attribute array
-	glEnableVertexAttribArray(1); // Enable the second vertex attribute array
-	glBindVertexArray(0); // 
-	PrintErrors();
-
-	delete [] Vertices;
-	delete [] Colors;
-}
-
-void OpenGLContext::CreateSquare(float SideLength, float Position[3]) 
-{
-	// @TODO: change this new call
-	float* Vertices = new float[12];
-	float* Colors = new float[12];
-
-	assert (SideLength > 0);
-	float HalfLength = SideLength/2;
-
-	Vertices[0] = Position[0] - HalfLength; Vertices[1] = Position[1] + HalfLength; Vertices[2] = Position[2]; // Bottom left corner
-	Vertices[3] = Position[0] - HalfLength; Vertices[4] = Position[1] - HalfLength; Vertices[5] = Position[2]; // Top left corner
-	Vertices[6] = Position[0] + HalfLength; Vertices[7] = Position[1] + HalfLength; Vertices[8] = Position[2]; // Top Right corner
-	Vertices[9] = Position[0] + HalfLength; Vertices[10] = Position[1] - HalfLength; Vertices[11] = Position[2]; // Bottom right corner
-
-	glGenVertexArrays(1, &VertexArrayObject[0]); // Create our Vertex Array Object
-	glBindVertexArray(VertexArrayObject[0]); // Bind our Vertex Array Object so we can use it
-
-	glGenBuffers(1, VertexBufferObject); // Generate our Vertex Buffer Object
-	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[0]); // Bind our Vertex Buffer Object
-	glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(GLfloat), Vertices, GL_STATIC_DRAW); // Set the size and data of our VBO and set it to STATIC_DRAW
-
-	glVertexAttribPointer((GLuint)0, 3, GL_FLOAT, GL_FALSE, 0, 0); // Set up our vertex attributes pointer
-
-	glEnableVertexAttribArray(0); // 
-	glBindVertexArray(0); // 
-	PrintErrors();
-
-
-	delete [] Vertices;
-	delete [] Colors;
 }
 
 void OpenGLContext::PrintErrors()

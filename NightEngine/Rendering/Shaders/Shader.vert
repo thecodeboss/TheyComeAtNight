@@ -5,9 +5,9 @@ uniform mat4 ViewMatrix;
 uniform mat4 ModelMatrix;
 
 in vec3 in_Position;
-in vec3 in_Color;
+in vec4 in_Color;
 
-out vec3 pass_Color;
+out vec4 pass_Color;
 
 void main(void)
 {  

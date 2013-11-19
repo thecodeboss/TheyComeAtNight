@@ -2,24 +2,10 @@
 #define OpenGL_h__
 
 #include <Windows.h>
-
-// GLEW Libraries
-#include <GL/glew.h>
-#include <GL/wglew.h>
-#include <GL/GLU.h>
-
-// GLM Libraries
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
+#include "GL.h"
 #include "../Settings/Settings.h"
 #include "Shader.h"
-
-// Typedefs
-typedef glm::vec3 vec3;
-typedef glm::vec4 vec4;
-typedef glm::mat3 mat3;
-typedef glm::mat4 mat4;
+#include "Model.h"
 
 class OpenGLContext
 {
@@ -32,8 +18,6 @@ public:
 	void ReshapeWindow(unsigned x, unsigned y);
 	void RenderScene();
 	void PrintErrors();
-	void CreateSquare();
-	void CreateSquare(float SideLength, float Position[3]);
 private:
 	HGLRC m_RenderingContext;
 	HDC m_DeviceContext;
@@ -46,6 +30,7 @@ private:
 	mat4 ModelMatrix;
 	unsigned VertexArrayObject[1];
 	unsigned VertexBufferObject[2]; //two buffers, one for vertices and one for color
+	Model* m_Models; // @TODO: Move this into a 'Scene' class
 };
 
 #endif // OpenGL_h__

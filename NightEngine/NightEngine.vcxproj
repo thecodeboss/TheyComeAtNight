@@ -27,8 +27,13 @@
     <ClInclude Include="Memory\Pool.h" />
     <ClInclude Include="Memory\Stack.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Rendering\GL.h" />
+    <ClInclude Include="Rendering\Mesh.h" />
+    <ClInclude Include="Rendering\Model.h" />
+    <ClInclude Include="Rendering\Models\Cube.h" />
     <ClInclude Include="Rendering\OpenGL.h" />
     <ClInclude Include="Rendering\Shader.h" />
+    <ClInclude Include="Rendering\Texture.h" />
     <ClInclude Include="Settings\Settings.h" />
     <ClInclude Include="Tests\Tests.h" />
     <ClInclude Include="Window\Window.h" />
@@ -37,8 +42,12 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Memory\Pool.cpp" />
     <ClCompile Include="Memory\Stack.cpp" />
+    <ClCompile Include="Rendering\Mesh.cpp" />
+    <ClCompile Include="Rendering\Model.cpp" />
+    <ClCompile Include="Rendering\Models\Cube.cpp" />
     <ClCompile Include="Rendering\OpenGL.cpp" />
     <ClCompile Include="Rendering\Shader.cpp" />
+    <ClCompile Include="Rendering\Texture.cpp" />
     <ClCompile Include="Settings\Settings.cpp" />
     <ClCompile Include="Tests\Tests.cpp" />
     <ClCompile Include="Window\Window.cpp" />

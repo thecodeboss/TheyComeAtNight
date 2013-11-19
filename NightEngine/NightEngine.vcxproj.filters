@@ -23,6 +23,18 @@
     <ClCompile Include="Tests\Tests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Models\Cube.cpp">
+      <Filter>Rendering\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Mesh.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Model.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Texture.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
@@ -62,6 +74,21 @@
     <ClInclude Include="Tests\Tests.h">
       <Filter>Tests</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Models\Cube.h">
+      <Filter>Rendering\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\GL.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Mesh.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Model.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Texture.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Audio">
@@ -93,6 +120,9 @@
     </Filter>
     <Filter Include="Rendering\Shaders">
       <UniqueIdentifier>{6670ced0-d68d-49b4-86a9-00141d0829a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Models">
+      <UniqueIdentifier>{3f96a505-b447-49e2-acce-e9e2d09340c0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
