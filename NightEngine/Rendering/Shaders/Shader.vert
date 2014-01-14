@@ -4,8 +4,8 @@ uniform mat4 ProjectionMatrix;
 uniform mat4 ViewMatrix;
 uniform mat4 ModelMatrix;
 
-in vec3 in_Position;
-in vec4 in_Color;
+in layout(location=0) vec3 in_Position;
+in layout(location=1) vec4 in_Color;
 
 out vec4 pass_Color;
 

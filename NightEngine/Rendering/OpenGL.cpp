@@ -64,6 +64,7 @@ bool OpenGLContext::CreateContext(HWND WindowIdentifier, GameSettings* gameSetti
 	}
 
 	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
 
 	return true; // We have successfully created a context, return true
 }
@@ -83,9 +84,18 @@ void OpenGLContext::SetupScene()
 
 	float Position[3] = {0, 0, 0};
 
-	m_Models = Model::CreateCube();
-	m_Models->InitializeBuffers();
-	m_Models->m_ModelMatrix = glm::scale(mat4(1.0f), vec3(0.5f));
+	m_NumModels = 7;
+
+	m_Models = new Model*[m_NumModels];
+
+	for (unsigned i=0; i<m_NumModels; i++)
+	{
+		static int j = -3;
+		m_Models[i] = Model::CreateCube();
+		m_Models[i]->InitializeBuffers();
+		m_Models[i]->m_ModelMatrix = glm::scale(mat4(1.0f), vec3(0.5f));
+		m_Models[i]->m_ModelMatrix = glm::translate(m_Models[i]->m_ModelMatrix, vec3(2.0f*(j++), 0.0f, 0.0f));
+	}
 	PrintErrors();
 }
 
@@ -105,26 +115,30 @@ void OpenGLContext::RenderScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); // Clear required buffers
 	PrintErrors();
 
-	ViewMatrix = glm::translate(mat4(1.0f), vec3(0.0f, 0.0f, -5.f)); // Create our view matrix which will translate us back 5 units
-	m_Models->m_ModelMatrix = glm::rotate(m_Models->m_ModelMatrix, 1.0f, vec3(1.0f, 1.0f, 0.0f));
-	m_Models->m_ModelMatrix = glm::rotate(m_Models->m_ModelMatrix, 0.5f, vec3(0.0f, 1.0f, -1.0f));
-
 	m_Shader->Bind();
 	PrintErrors();
+
+	ViewMatrix = glm::translate(mat4(1.0f), vec3(0.0f, 0.0f, -5.f)); // Create our view matrix which will translate us back 5 units
 
 	int ProjectionMatrixLocation = glGetUniformLocation(m_Shader->ID(), "ProjectionMatrix"); // Get the location of our projection matrix in the shader
 	int ViewMatrixLocation = glGetUniformLocation(m_Shader->ID(), "ViewMatrix"); // Get the location of our view matrix in the shader
 	int ModelMatrixLocation = glGetUniformLocation(m_Shader->ID(), "ModelMatrix"); // Get the location of our model matrix in the shader
-	
+
 	glUniformMatrix4fv(ProjectionMatrixLocation, 1, GL_FALSE, &ProjectionMatrix[0][0]); // Send our projection matrix to the shader
 	glUniformMatrix4fv(ViewMatrixLocation, 1, GL_FALSE, &ViewMatrix[0][0]); // Send our view matrix to the shader
-	glUniformMatrix4fv(ModelMatrixLocation, 1, GL_FALSE, &m_Models->m_ModelMatrix[0][0]); // Send our model matrix to the shader
 
-	glBindVertexArray(m_Models->VertexArrayObject[0]); // Bind our Vertex Array Object
-	PrintErrors();
-	
-	glDrawElements(GL_TRIANGLES, 3 * m_Models->m_Mesh->m_NumTriangles, GL_UNSIGNED_INT, nullptr);
-	glBindVertexArray(0); // Unbind our Vertex Array Object
+	for (unsigned i=0; i<m_NumModels; i++)
+	{
+		m_Models[i]->m_ModelMatrix = glm::rotate(m_Models[i]->m_ModelMatrix, 0.1f*(1.0f +0.1f*i), vec3(-3.0f + 1.0f*i, 1.0f, 0.0f));
+
+		glUniformMatrix4fv(ModelMatrixLocation, 1, GL_FALSE, &m_Models[i]->m_ModelMatrix[0][0]); // Send our model matrix to the shader
+
+		glBindVertexArray(m_Models[i]->VertexArrayObject[0]); // Bind our Vertex Array Object
+		PrintErrors();
+
+		glDrawElements(GL_TRIANGLES, 3 * m_Models[i]->m_Mesh->m_NumTriangles, GL_UNSIGNED_INT, nullptr);
+		glBindVertexArray(0); // Unbind our Vertex Array Object
+	}
 
 	m_Shader->Unbind();
 	PrintErrors();

@@ -30,7 +30,8 @@ private:
 	mat4 ModelMatrix;
 	unsigned VertexArrayObject[1];
 	unsigned VertexBufferObject[2]; //two buffers, one for vertices and one for color
-	Model* m_Models; // @TODO: Move this into a 'Scene' class
+	unsigned m_NumModels;
+	Model** m_Models; // @TODO: Move this into a 'Scene' class
 };
 
 #endif // OpenGL_h__
