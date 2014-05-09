@@ -75,7 +75,7 @@ void OpenGLContext::SetupScene()
 	PrintErrors();
 
 	m_Shader = new Shader();
-	m_Shader->Initialize("NightEngine\\Rendering\\Shaders\\Shader.vert", "NightEngine\\Rendering\\Shaders\\Shader.frag");
+	m_Shader->Initialize("..\\NightEngine\\Rendering\\Shaders\\Shader.vert", "..\\NightEngine\\Rendering\\Shaders\\Shader.frag");
 	PrintErrors();
 
 	bSceneReady = true;
